@@ -1,4 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import { reach } from 'yup'
+import schema from '../validation/SignupSchema'
 
 const initialFormValues = {
     username: '',
@@ -6,38 +8,47 @@ const initialFormValues = {
     password2: '',
     robot: ''
 }
-const initialErrors = ['']
+const initialErrors = {
+    username: 'You must supply a username',
+    password: 'You must supply a password',
+    password2: 'You must reenter your password',
+    robot: "You must prove you're not a robot"
+}
 
 //REPLACE CURRENT ERROR SYSTEM WITH FORM VALIDATION
 
 function Signup (){
     const [formValues, setFormValues] = useState(initialFormValues)
     const [errors, setErrors] = useState(initialErrors)
+    const [disabled, setDisabled] = useState(true)
 
-    console.log(formValues)
+    useEffect(() => {
+        schema.isValid(formValues).then(valid => setDisabled(!valid))
+    }, [formValues])
 
     function handleChange (e){
+        const {name, value} = e.target
+        validate(name, value)
         setFormValues({
             ...formValues,
-            [e.target.name]: e.target.value
+            [name]: value
         })
-        setErrors(initialErrors)
     }
 
     function handleClick (e){
         e.preventDefault()
-        setErrors(initialErrors)
-        if (formValues.robot !== 'I am not a robot'){
-            setErrors([...errors, 'Please prove you are not a robot!'])
-        }
-        if (formValues.password !== formValues.password2){
-            setErrors([...errors, 'Please make sure your passwords match!'])
-        }
     }
+
+    const validate = (name, value) => {
+        reach(schema, name)
+          .validate(value)
+          .then(() => setErrors({ ...errors, [name]: '' }))
+          .catch(err => setErrors({ ...errors, [name]: err.errors[0]}))
+      }
 
     return <div className='signup'>
         <h2>Signup</h2>
-        <form>
+        <form onSubmit={{handleClick}}>
             <label htmlFor='username'>Username: </label>
             <input id='username' name='username' value={formValues.username} onChange={handleChange} />
             <label htmlFor='password'>Password: </label>
@@ -46,9 +57,12 @@ function Signup (){
             <input id='password2' name='password2' value={formValues.password2} onChange={handleChange} />
             <p>Please type 'I am not a robot' in the space below</p>
             <input name='robot' value={formValues.robot} onChange={handleChange} />
-            <button onClick={handleClick}>Submit</button>
+            <button disabled={disabled}>Submit</button>
         </form>
-        {errors.map(item => <p>{item}</p>)}
+        <p>{errors.username}</p>
+        <p>{errors.password}</p>
+        <p>{errors.password2}</p>
+        <p>{errors.robot}</p>
     </div>
 }
 
