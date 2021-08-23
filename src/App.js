@@ -1,6 +1,7 @@
 import './App.css';
-
-import {Switch, Route} from 'react-router-dom'
+import {Switch, Route} from 'react-router-dom';
+import {useState, useEffect} from 'react';
+import PotluckPage from './components/PotluckPage/PotluckPage';
 
 function App() {
   return (
@@ -24,9 +25,9 @@ function App() {
           {/* Insert potluck list here */}
 
         </Route>
-        <Route path='/potluck/id'>
+        <Route path='/potluck/:id'>
           {/* Insert potluck with item list here */}
-          
+          <PotluckPage />
         </Route>
       </Switch>
 
