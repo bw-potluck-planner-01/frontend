@@ -4,6 +4,7 @@ import * as material from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import { startLogin } from "../action/Login";
 const Login = (props) => {
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -55,6 +56,7 @@ const Login = (props) => {
   const handleSubmit = (event) => {
     console.log(values);
     console.log("Login action!");
+    props.startLogin();
     event.preventDefault();
   };
   const classes = useStyles();
@@ -129,4 +131,4 @@ const Login = (props) => {
 function mapStateToProps(state) {
   return { username: state.username, password: state.password };
 }
-export default connect(mapStateToProps, {})(Login);
+export default connect(mapStateToProps, { startLogin })(Login);
