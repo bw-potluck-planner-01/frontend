@@ -1,41 +1,50 @@
-import './App.css';
+import "./App.css";
 
 import {Switch, Route} from 'react-router-dom'
-// import axios from 'axios'; //for later
+import styled from 'styled-components'
 
-import Pot from './Pot/Pot'
+import Home from './components/Home'
+import Header from './components/Header';
+import Signup from './components/Signup';
+import Login from "./components/Login";
+import Pot from './Pot/Pot';
 
 function App() {
 
   return (
-    <div className="App">
+    <AppFull>
       {/* Insert Header here */}
-
+      <Header />
       <Switch>
-        <Route exact path='/'>
+        <Route exact path="/">
           {/* Insert home page here  */}
-
+          <Home />
         </Route>
         <Route path='/signup'>
           {/* Insert signup here */}
-
+          <Signup />
         </Route>
-        <Route path='/login'>
-          {/* Insert login here */}
-
+        <Route path="/signup">{/* Insert signup here */}</Route>
+        <Route path="/login">
+          <Login />
         </Route>
-        <Route exact path='/potluck'>
+        <Route exact path="/potluck">
           {/* Insert potluck list here */}
           <Pot />
         </Route>
-        <Route path='/potluck/id'>
+        <Route path="/potluck/:id">
           {/* Insert potluck with item list here */}
-          
         </Route>
       </Switch>
 
-    </div>
+    </AppFull>
   );
 }
 
 export default App;
+
+const AppFull = styled.div`
+  text-align: center;
+  background: peachpuff;
+  min-height: 100vh;
+`
