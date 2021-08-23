@@ -1,6 +1,7 @@
-import './App.css';
+import "./App.css";
 
-import {Switch, Route} from 'react-router-dom'
+import { Switch, Route } from "react-router-dom";
+import Login from "./components/Login";
 
 function App() {
   return (
@@ -8,28 +9,20 @@ function App() {
       {/* Insert Header here */}
 
       <Switch>
-        <Route exact path='/'>
+        <Route exact path="/">
           {/* Insert home page here  */}
-
         </Route>
-        <Route path='/signup'>
-          {/* Insert signup here */}
-
+        <Route path="/signup">{/* Insert signup here */}</Route>
+        <Route path="/login">
+          <Login />
         </Route>
-        <Route path='/login'>
-          {/* Insert login here */}
-
-        </Route>
-        <Route exact path='/potluck'>
+        <Route exact path="/potluck">
           {/* Insert potluck list here */}
-
         </Route>
-        <Route path='/potluck/:id'>
+        <Route path="/potluck/:id">
           {/* Insert potluck with item list here */}
-
         </Route>
       </Switch>
-
     </div>
   );
 }
