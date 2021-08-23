@@ -1,29 +1,34 @@
 import './App.css';
 import {Switch, Route} from 'react-router-dom';
 import {useState, useEffect} from 'react';
+import styled from 'styled-components'
+
 import PotluckPage from './components/PotluckPage/PotluckPage';
+import Home from './components/Home'
+import Header from './components/Header';
+import Signup from './components/Signup';
+import Login from "./components/Login";
 
 function App() {
   return (
-    <div className="App">
+    <AppFull>
       {/* Insert Header here */}
-
+      <Header />
       <Switch>
-        <Route exact path='/'>
+        <Route exact path="/">
           {/* Insert home page here  */}
-
+          <Home />
         </Route>
         <Route path='/signup'>
           {/* Insert signup here */}
-
+          <Signup />
         </Route>
-        <Route path='/login'>
-          {/* Insert login here */}
-
+        <Route path="/signup">{/* Insert signup here */}</Route>
+        <Route path="/login">
+          <Login />
         </Route>
-        <Route exact path='/potluck'>
+        <Route exact path="/potluck">
           {/* Insert potluck list here */}
-
         </Route>
         <Route path='/potluck/:id'>
           {/* Insert potluck with item list here */}
@@ -31,8 +36,14 @@ function App() {
         </Route>
       </Switch>
 
-    </div>
+    </AppFull>
   );
 }
 
 export default App;
+
+const AppFull = styled.div`
+  text-align: center;
+  background: peachpuff;
+  min-height: 100vh;
+`
