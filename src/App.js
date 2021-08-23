@@ -1,13 +1,15 @@
 import './App.css';
 
 import {Switch, Route} from 'react-router-dom'
+import styled from 'styled-components'
 
 import Home from './components/Home'
 import Header from './components/Header';
+import Signup from './components/Signup';
 
 function App() {
   return (
-    <div className="App">
+    <AppFull>
       {/* Insert Header here */}
       <Header />
       <Switch>
@@ -17,7 +19,7 @@ function App() {
         </Route>
         <Route path='/signup'>
           {/* Insert signup here */}
-
+          <Signup />
         </Route>
         <Route path='/login'>
           {/* Insert login here */}
@@ -33,8 +35,14 @@ function App() {
         </Route>
       </Switch>
 
-    </div>
+    </AppFull>
   );
 }
 
 export default App;
+
+const AppFull = styled.div`
+  text-align: center;
+  background: peachpuff;
+  min-height: 100vh;
+`
