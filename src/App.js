@@ -1,25 +1,48 @@
-import logo from './logo.svg';
 import './App.css';
+
+import {Switch, Route} from 'react-router-dom'
+import styled from 'styled-components'
+
+import Home from './components/Home'
+import Header from './components/Header';
+import Signup from './components/Signup';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppFull>
+      {/* Insert Header here */}
+      <Header />
+      <Switch>
+        <Route exact path='/'>
+          {/* Insert home page here  */}
+          <Home />
+        </Route>
+        <Route path='/signup'>
+          {/* Insert signup here */}
+          <Signup />
+        </Route>
+        <Route path='/login'>
+          {/* Insert login here */}
+
+        </Route>
+        <Route exact path='/potluck'>
+          {/* Insert potluck list here */}
+
+        </Route>
+        <Route path='/potluck/:id'>
+          {/* Insert potluck with item list here */}
+
+        </Route>
+      </Switch>
+
+    </AppFull>
   );
 }
 
 export default App;
+
+const AppFull = styled.div`
+  text-align: center;
+  background: peachpuff;
+  min-height: 100vh;
+`
