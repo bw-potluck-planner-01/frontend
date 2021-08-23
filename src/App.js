@@ -7,8 +7,10 @@ import Home from './components/Home'
 import Header from './components/Header';
 import Signup from './components/Signup';
 import Login from "./components/Login";
+import Pot from './Pot/Pot';
 
 function App() {
+
   return (
     <AppFull>
       {/* Insert Header here */}
@@ -28,6 +30,7 @@ function App() {
         </Route>
         <Route exact path="/potluck">
           {/* Insert potluck list here */}
+          <Pot />
         </Route>
         <Route path="/potluck/:id">
           {/* Insert potluck with item list here */}
