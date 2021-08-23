@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { reach } from 'yup'
 import schema from '../validation/SignupSchema'
+import styled from 'styled-components';
 
 const initialFormValues = {
     username: '',
@@ -49,21 +50,40 @@ function Signup (){
     return <div className='signup'>
         <h2>Signup</h2>
         <form onSubmit={{handleClick}}>
-            <label htmlFor='username'>Username: </label>
-            <input id='username' name='username' value={formValues.username} onChange={handleChange} />
-            <label htmlFor='password'>Password: </label>
-            <input id='password' name='password' value={formValues.password} onChange={handleChange} />
-            <label htmlFor='password2'>Reenter Password: </label>
-            <input id='password2' name='password2' value={formValues.password2} onChange={handleChange} />
-            <p>Please type 'I am not a robot' in the space below</p>
-            <input name='robot' value={formValues.robot} onChange={handleChange} />
-            <button disabled={disabled}>Submit</button>
+            <Formdiv>
+                <label htmlFor='username'>Username: </label>
+                <input id='username' name='username' value={formValues.username} onChange={handleChange} />
+            </Formdiv>
+            <Formdiv>
+                <label htmlFor='password'>Password: </label>
+                <input id='password' name='password' value={formValues.password} onChange={handleChange} />
+            </Formdiv>
+            <Formdiv>
+                <label htmlFor='password2'>Reenter Password: </label>
+                <input id='password2' name='password2' value={formValues.password2} onChange={handleChange} />
+            </Formdiv>
+                <p>Please type 'I am not a robot' in the space below</p>
+                <input name='robot' value={formValues.robot} onChange={handleChange} />
+                <div><button disabled={disabled}>Submit</button></div>
         </form>
-        <p>{errors.username}</p>
-        <p>{errors.password}</p>
-        <p>{errors.password2}</p>
-        <p>{errors.robot}</p>
+        <Ep>{errors.username}</Ep>
+        <Ep>{errors.password}</Ep>
+        <Ep>{errors.password2}</Ep>
+        <Ep>{errors.robot}</Ep>
     </div>
 }
 
 export default Signup
+
+const Formdiv = styled.div`
+    width: 350px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+`
+
+const Ep = styled.p`
+    color: red;
+    font-weight: bold;
+    margin: 0.5%;
+`
