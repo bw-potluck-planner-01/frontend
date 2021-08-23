@@ -24,9 +24,9 @@ function App() {
           {/* Insert potluck list here */}
 
         </Route>
-        <Route path='/potluck/id'>
+        <Route path='/potluck/:id'>
           {/* Insert potluck with item list here */}
-          
+
         </Route>
       </Switch>
 
