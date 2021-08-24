@@ -8,14 +8,17 @@ import Home from "./components/Home";
 import Header from "./components/Header";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
-import Pot from './Pot/Pot';
-import ProtectedRoute from './components/ProtectedRoute'
+import Pot from "./Pot/Pot";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { connect } from "react-redux";
 
 const USER_CURRENT_TOKEN = localStorage.getItem("TOKEN");
 USER_CURRENT_TOKEN
   ? console.log(`User have a token! ${JSON.parse(USER_CURRENT_TOKEN)}`)
   : console.log(`User have no token! `);
-function App() {
+
+function App(props) {
+  useEffect(() => {}, [props.token]);
   return (
     <AppFull>
       {/* Insert Header here */}
@@ -42,16 +45,20 @@ function App() {
           <PotluckPage />
         </Route>
         <ProtectedRoute exact path="/potluck" component={Pot} />
-        <ProtectedRoute path='/potluck/:id' component={PotluckPage} />
+        <ProtectedRoute path="/potluck/:id" component={PotluckPage} />
       </Switch>
     </AppFull>
   );
 }
-
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    token: state.token,
+  };
+};
+export default connect(mapStateToProps, {})(App);
 
 const AppFull = styled.div`
   text-align: center;
-  background: #DCCCBB;
+  background: #dcccbb;
   min-height: 100vh;
 `;
