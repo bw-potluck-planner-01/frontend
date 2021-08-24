@@ -46,8 +46,8 @@ const Login = (props) => {
       padding: "0% auto",
       marginTop: "1%",
     },
-    form: {
-      width: "100%",
+    info: {
+      width: "50%",
       margin: "0% auto",
       padding: "2%",
       marginTop: "1%",
@@ -82,9 +82,14 @@ const Login = (props) => {
         <>
           {" "}
           <>
-            <h1>Potluck Planner</h1>
+            <h1>Login to Your Account</h1>
+            <material.Paper className={classes.info}>
+              Plan the Perfect Potluck! Coordinate potluck dishes, supplies and
+              party RSVPs with online sign up sheets for gatherings with family,
+              friends and large groups.
+            </material.Paper>
           </>
-          <div id="FormHolder">
+          <material.Paper id="FormHolder">
             <div className="login-form">
               <div className={classes.root}>
                 <material.FormControl className={classes.input}>
@@ -145,7 +150,7 @@ const Login = (props) => {
                 </material.FormControl>
               </div>
             </div>
-          </div>
+          </material.Paper>
         </>
       ) : (
         push("/")

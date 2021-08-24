@@ -1,4 +1,9 @@
-import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_TEMP } from "../action/LoginAction";
+import {
+  LOGIN_START,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  LOGOUT_TEMP,
+} from "../action/LoginAction";
 const initialState = {
   username: "",
   password: "",
@@ -21,10 +26,11 @@ export default function Reducer(state = initialState, action) {
     }
 
     case LOGOUT_TEMP: {
-      return {...state, token: null}
+      return { ...state, token: null };
     }
     default: {
-      return state;
+      const USER_CURRENT_TOKEN = localStorage.getItem("TOKEN");
+      return { ...state, token: USER_CURRENT_TOKEN };
     }
   }
 }
