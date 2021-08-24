@@ -1,17 +1,25 @@
-import './App.css';
-import {Switch, Route} from 'react-router-dom';
-import {useState, useEffect} from 'react';
-import styled from 'styled-components'
-
-import PotluckPage from './components/PotluckPage/PotluckPage';
-import Home from './components/Home'
-import Header from './components/Header';
-import Signup from './components/Signup';
+import "./App.css";
+import { Switch, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+import styled from "styled-components";
+import PotluckPage from "./components/PotluckPage/PotluckPage";
+import Home from "./components/Home";
+import Header from "./components/Header";
+import Signup from "./components/Signup";
 import Login from "./components/Login";
-import Pot from './Pot/Pot';
+import Pot from "./Pot/Pot";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { connect } from "react-redux";
 
-function App() {
+const USER_CURRENT_TOKEN = localStorage.getItem("TOKEN");
+USER_CURRENT_TOKEN
+  ? console.log(`User have a token! ${USER_CURRENT_TOKEN})`)
+  : console.log(`User have no token! `);
 
+function App(props) {
+  useEffect(() => {
+    console.log(props.token);
+  }, []);
   return (
     <AppFull>
       {/* Insert Header here */}
@@ -21,7 +29,7 @@ function App() {
           {/* Insert home page here  */}
           <Home />
         </Route>
-        <Route path='/signup'>
+        <Route path="/signup">
           {/* Insert signup here */}
           <Signup />
         </Route>
@@ -33,20 +41,25 @@ function App() {
           {/* Insert potluck list here */}
           <Pot />
         </Route>
-        <Route path='/potluck/:id'>
+        <Route path="/potluck/:id">
           {/* Insert potluck with item list here */}
           <PotluckPage />
         </Route>
+        <ProtectedRoute exact path="/potluck" component={Pot} />
+        <ProtectedRoute path="/potluck/:id" component={PotluckPage} />
       </Switch>
-
     </AppFull>
   );
 }
-
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    token: state.token,
+  };
+};
+export default connect(mapStateToProps, {})(App);
 
 const AppFull = styled.div`
   text-align: center;
-  background: peachpuff;
+  background: #dcccbb;
   min-height: 100vh;
-`
+`;
