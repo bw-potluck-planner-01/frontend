@@ -3,7 +3,6 @@ import { Switch, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 
-
 import PotluckPage from "./components/PotluckPage/PotluckPage";
 import Home from "./components/Home";
 import Header from "./components/Header";
@@ -39,7 +38,7 @@ function App(props) {
         <Route path="/login">
           <Login />
         </Route>
-        <Route exact path="/potluck">
+        <Route exact path="/addpotluck">
           {/* Insert potluck list here */}
           <Pot />
         </Route>
