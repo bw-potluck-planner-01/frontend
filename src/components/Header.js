@@ -6,11 +6,11 @@ import axiosWithAuth from '../utils/axiosWithAuth'
 import pic from '../assets/pic11.jpg'
 
 function Header () {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('TOKEN')
 
     function handleClick(e){
         e.preventDefault()
-        localStorage.removeItem('token')
+        localStorage.removeItem('TOKEN')
     }
 
     return <Heading>
