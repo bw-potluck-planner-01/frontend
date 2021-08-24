@@ -6,6 +6,7 @@ import {connect} from 'react-redux'
 import axiosWithAuth from '../utils/axiosWithAuth'
 import pic from '../assets/pic11.jpg'
 import {logoutTemp} from '../action/LoginAction'
+import logo from '../assets/logo-sndw.png'
 
 function Header (props) {
     const {token} = props
@@ -19,6 +20,7 @@ function Header (props) {
     }
 
     return <Heading>
+        <Logo src={logo} alt='logo' />
         <Headnav>
             <Link classname='null' to='/'><button>Home</button></Link>
             {token && <Link classname='null' to='/potluck'><button>Potlucks</button></Link>}
@@ -37,10 +39,15 @@ function mapStateToProps (state){
 
 export default connect (mapStateToProps, {logoutTemp})(Header)
 
+const Logo = styled.img`
+    width: 100px;
+`
+
 const Headnav = styled.nav`
     width: 40%;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     margin: 2% 5%;
     button{
       padding-top:5%;
@@ -58,6 +65,6 @@ const Headnav = styled.nav`
 
 const Heading = styled.header`
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     background: url(${pic})
 `
