@@ -1,4 +1,4 @@
-import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAIL } from "../action/LoginAction";
+import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_TEMP } from "../action/LoginAction";
 const initialState = {
   username: "",
   password: "",
@@ -18,6 +18,10 @@ export default function Reducer(state = initialState, action) {
     }
     case LOGIN_FAIL: {
       return { ...state, error: action.payload, isLoading: false };
+    }
+
+    case LOGOUT_TEMP: {
+      return {...state, token: null}
     }
     default: {
       return state;

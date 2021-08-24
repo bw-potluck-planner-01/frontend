@@ -2,6 +2,7 @@ import axios from "axios";
 export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
+export const LOGOUT_TEMP = "LOGOUT_TEMP"
 
 const LoginAction = (props) => (dispatch) => {
   const data = {
@@ -20,4 +21,9 @@ const LoginAction = (props) => (dispatch) => {
       console.log(error.response.data.message);
     });
 };
+
+export const logoutTemp = () => {
+  return ({ type: LOGOUT_TEMP})
+}
+
 export default LoginAction;
