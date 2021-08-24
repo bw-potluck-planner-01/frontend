@@ -30,7 +30,19 @@ const Headnav = styled.nav`
     width: 40%;
     display: flex;
     justify-content: space-around;
-    margin: 1% 5%;
+    margin: 2% 5%;
+    button{
+      padding-top:5%;
+      padding-bottom:5%;
+      width: 130%;
+      border-radius:10px;
+      color:black;
+      background-color:#EAB464;
+      font-size:90%;
+    }
+    button:hover{
+        box-shadow: 2px 2px 0px 0px black;
+    }
 `
 
 const Heading = styled.header`
