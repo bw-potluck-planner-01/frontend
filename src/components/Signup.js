@@ -61,17 +61,19 @@ function Signup (){
             <Formdiv>
                 <Styinput id='username' name='username' placeholder='Username' value={formValues.username} onChange={handleChange} />
                 <Styinput id='password' name='password' placeholder='Password' value={formValues.password} onChange={handleChange} />
-                <Styinput id='password2' name='password2' placeholder='Reenter password' value={formValues.password2} onChange={handleChange} />
+                <Styinput id='password2' name='password2' placeholder='Retype password' value={formValues.password2} onChange={handleChange} />
             </Formdiv>
                 <p>Please type 'I am not a robot' in the space below</p>
                 <Styinput name='robot' value={formValues.robot} onChange={handleChange} />
                 <div><Stybutton disabled={disabled}>SIGN UP</Stybutton></div>
         </form>
-        {errors.username !== '' && <Ep>{errors.username}</Ep>}
-        {errors.password !== '' && <Ep>{errors.password}</Ep>}
-        {errors.password2 !== '' && <Ep>{errors.password2}</Ep>}
-        {errors.robot !== '' && <Ep>{errors.robot}</Ep>}
-        {errors.backend !== '' && <Ep>{errors.backend}</Ep>}
+        <Ediv>
+            {errors.username !== '' && <Ep>{errors.username}</Ep>}
+            {errors.password !== '' && <Ep>{errors.password}</Ep>}
+            {errors.password2 !== '' && <Ep>{errors.password2}</Ep>}
+            {errors.robot !== '' && <Ep>{errors.robot}</Ep>}
+            {errors.backend !== '' && <Ep>{errors.backend}</Ep>}
+        </Ediv>
     </div>
 }
 
@@ -91,6 +93,10 @@ const Ep = styled.p`
     padding: 2% 5%;
     border: 1px solid red;
     width: 30%;
+`
+
+const Ediv = styled.div`
+    margin: 5% auto;
 `
 
 const Styinput = styled.input`
