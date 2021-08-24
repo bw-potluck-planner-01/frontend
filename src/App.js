@@ -9,6 +9,7 @@ import Header from './components/Header';
 import Signup from './components/Signup';
 import Login from "./components/Login";
 import Pot from './Pot/Pot';
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
 
@@ -29,14 +30,8 @@ function App() {
         <Route path="/login">
           <Login />
         </Route>
-        <Route exact path="/potluck">
-          {/* Insert potluck list here */}
-          <Pot />
-        </Route>
-        <Route path='/potluck/:id'>
-          {/* Insert potluck with item list here */}
-          <PotluckPage />
-        </Route>
+        <ProtectedRoute exact path="/potluck" component={Pot} />
+        <ProtectedRoute path='/potluck/:id' component={PotluckPage} />
       </Switch>
 
     </AppFull>
