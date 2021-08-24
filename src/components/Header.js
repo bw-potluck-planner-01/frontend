@@ -8,7 +8,7 @@ import pic from '../assets/pic11.jpg'
 import {logoutTemp} from '../action/LoginAction'
 
 function Header (props) {
-    const token = localStorage.getItem('TOKEN')
+    const {token} = props
 
     function handleClick(e){
         e.preventDefault()
@@ -27,7 +27,13 @@ function Header (props) {
     </Heading>
 }
 
-export default connect (null, {logoutTemp})(Header)
+function mapStateToProps (state){
+    return {
+        token: state.token,
+      };
+}
+
+export default connect (mapStateToProps, {logoutTemp})(Header)
 
 const Headnav = styled.nav`
     width: 40%;
