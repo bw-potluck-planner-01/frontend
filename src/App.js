@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import PotluckPage from "./components/PotluckPage/PotluckPage";
+import SavedList from './Pot/SavedList'
 import Home from "./components/Home";
 import Header from "./components/Header";
 import Signup from "./components/Signup";
@@ -45,6 +46,9 @@ function App(props) {
         <Route path="/potluck/:id">
           {/* Insert potluck with item list here */}
           <PotluckPage />
+        </Route>
+        <Route path='/potlucks'>
+          <SavedList />
         </Route>
         <ProtectedRoute exact path="/potluck" component={Pot} />
         <ProtectedRoute path="/potluck/:id" component={PotluckPage} />
