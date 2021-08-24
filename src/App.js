@@ -39,19 +39,9 @@ function App(props) {
         <Route path="/login">
           <Login />
         </Route>
-        <Route exact path="/addpotluck">
-          {/* Insert potluck list here */}
-          <Pot />
-        </Route>
-        <Route path="/potluck/:id">
-          {/* Insert potluck with item list here */}
-          <PotluckPage />
-        </Route>
-        <Route path='/potlucks'>
-          <SavedList />
-        </Route>
-        <ProtectedRoute exact path="/potluck" component={Pot} />
+        <ProtectedRoute exact path="/addpotluck" component={Pot}/>
         <ProtectedRoute path="/potluck/:id" component={PotluckPage} />
+        <ProtectedRoute path='/potlucks' component={SavedList}/>
       </Switch>
     </AppFull>
   );
