@@ -2,7 +2,6 @@ import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-
 import PotluckPage from "./components/PotluckPage/PotluckPage";
 import Home from "./components/Home";
 import Header from "./components/Header";
@@ -14,11 +13,13 @@ import { connect } from "react-redux";
 
 const USER_CURRENT_TOKEN = localStorage.getItem("TOKEN");
 USER_CURRENT_TOKEN
-  ? console.log(`User have a token! ${JSON.parse(USER_CURRENT_TOKEN)}`)
+  ? console.log(`User have a token! ${USER_CURRENT_TOKEN})`)
   : console.log(`User have no token! `);
 
 function App(props) {
-  useEffect(() => {}, [props.token]);
+  useEffect(() => {
+    console.log(props.token);
+  }, []);
   return (
     <AppFull>
       {/* Insert Header here */}
