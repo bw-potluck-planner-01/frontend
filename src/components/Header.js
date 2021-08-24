@@ -1,16 +1,19 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import styled from 'styled-components'
+import {connect} from 'react-redux'
 
 import axiosWithAuth from '../utils/axiosWithAuth'
 import pic from '../assets/pic11.jpg'
+import {logoutTemp} from '../action/LoginAction'
 
-function Header () {
+function Header (props) {
     const token = localStorage.getItem('TOKEN')
 
     function handleClick(e){
         e.preventDefault()
         localStorage.removeItem('TOKEN')
+        props.logoutTemp()
     }
 
     return <Heading>
@@ -24,7 +27,7 @@ function Header () {
     </Heading>
 }
 
-export default Header
+export default connect (null, {logoutTemp})(Header)
 
 const Headnav = styled.nav`
     width: 40%;
