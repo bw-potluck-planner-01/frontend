@@ -2,7 +2,6 @@ import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import {useEffect} from 'react'
 
 
 import PotluckPage from "./components/PotluckPage/PotluckPage";
