@@ -4,6 +4,16 @@ import * as material from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import LoginAction from "../action/LoginAction";
+import { Alert } from "@material-ui/lab";
+
+function mapStateToProps(state) {
+  return {
+    username: state.username,
+    password: state.password,
+    error: state.error,
+  };
+}
 const Login = (props) => {
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,7 +35,13 @@ const Login = (props) => {
       width: "50%",
       margin: "0% auto",
       padding: "0% auto",
-      marginTop: "5%",
+      marginTop: "2%",
+    },
+    alert: {
+      width: "36%",
+      margin: "0% auto",
+      padding: "0% auto",
+      marginTop: "1%",
     },
   }));
   const [values, setValues] = useState({
@@ -53,8 +69,8 @@ const Login = (props) => {
     event.preventDefault();
   };
   const handleSubmit = (event) => {
-    console.log(values);
     console.log("Login action!");
+    props.LoginAction(values);
     event.preventDefault();
   };
   const classes = useStyles();
@@ -110,6 +126,11 @@ const Login = (props) => {
                   Sign Up
                 </material.Button>
               </material.ButtonGroup>
+              {!!props.error ? (
+                <Alert className={classes.alert} severity="error">
+                  {props.error}
+                </Alert>
+              ) : null}
               <material.Button
                 id="help"
                 onClick={handleHelp}
@@ -126,7 +147,4 @@ const Login = (props) => {
     </>
   );
 };
-function mapStateToProps(state) {
-  return { username: state.username, password: state.password };
-}
-export default connect(mapStateToProps, {})(Login);
+export default connect(mapStateToProps, { LoginAction })(Login);
