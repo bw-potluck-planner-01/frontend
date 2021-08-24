@@ -5,6 +5,7 @@ import axios from 'axios';
 import * as yup from 'yup';
 import schema from './validation/formSchema'
 import styled from 'styled-components';
+import axiosWithAuth from '../utils/axiosWithAuth'
 
 const StyledLuck = styled.div`
   header h1{
@@ -39,14 +40,15 @@ export default function Pot(props) {
    const [disabled, setDisabled] = useState(initialDisabled)
 
    const getPot = () => {
-       axios.get('https://potluckplannerplus.herokuapp.com/')
+       axiosWithAuth().get(`https://potluckplannerplus.herokuapp.com/org/${userId}/potlucks`)
        .then(res => {
            setPot(res.data);
+           console.log(res)
        }).catch(err => console.error(err))
    }
 
    const postNewPot = newPot => {
-     axios.post('https://potluckplannerplus.herokuapp.com/')
+     axiosWithAuth().post(`https://potluckplannerplus.herokuapp.com/org/${userId}`, newPot)
      .then(res => {
          setPot([res.data, ...pot]);
      }).catch(err => console.error(err))

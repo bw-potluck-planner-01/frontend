@@ -55,7 +55,7 @@ export default function PotForm(props) {
     const onSubmit = evt => {
         evt.perventDefault()
         submit()
-        push('/potluck/:id')
+        push(`/potluck/${props.id}`)
     }
 
     const onChange = evt => {
