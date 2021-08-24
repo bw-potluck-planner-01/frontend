@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import PotList from './PotList'
-import PotCard from './PotCard'
 import * as yup from 'yup';
 import schema from './validation/formSchema'
 import styled from 'styled-components';
 import axiosWithAuth from '../utils/axiosWithAuth'
+import { useHistory } from 'react-router';
 
 const StyledLuck = styled.div`
   header h1{
@@ -21,36 +21,27 @@ const initialFormValues = {
     place: '',
     date: '',
     time: '',
-    food: '',
+    name: '',
   }
   const initialFormErrors = {
     place: '',
     date: '',
     time: '',
-    food: '',
+    name: '',
   }
-  const initialPot = []
   const initialDisabled = true
-  const userId = 0
+  const userId = 1
 
 export default function Pot(props) {
-   const [pot, setPot] = useState(initialPot)
    const [formValues, setFormValues] = useState(initialFormValues)
    const [formErrors, setFormErrors] = useState(initialFormErrors)
    const [disabled, setDisabled] = useState(initialDisabled)
-
-   const getPot = () => {
-       axiosWithAuth().get(`https://potluckplannerplus.herokuapp.com/org/${userId}/potlucks`)
-       .then(res => {
-           setPot(res.data);
-           console.log(res)
-       }).catch(err => console.error(err))
-   }
+   const {push} = useHistory()
 
    const postNewPot = newPot => {
      axiosWithAuth().post(`https://potluckplannerplus.herokuapp.com/org/${userId}`, newPot)
      .then(res => {
-         setPot([res.data, ...pot]);
+         push('/potlucks')
      }).catch(err => console.error(err))
      setFormValues(initialFormValues)
    }
@@ -76,14 +67,10 @@ export default function Pot(props) {
         place: formValues.place,
         date: formValues.date,
         time: formValues.time,
-        food: formValues.food,
+        name: formValues.name,
      }
      postNewPot(newPotluck)
    }
-
-   useEffect(() => {
-       getPot()
-   }, [])
 
    useEffect(() => {
        schema.isValid(formValues).then(valid => setDisabled(!valid))
@@ -101,14 +88,6 @@ export default function Pot(props) {
              disabled={disabled}
              errors={formErrors} 
            />
-
-           {
-               pot.map(pot => {
-                   return (
-                       <PotCard key={pot.id} details={pot}/>
-                   )
-               })
-           }
          </div>
        </StyledLuck>
    );

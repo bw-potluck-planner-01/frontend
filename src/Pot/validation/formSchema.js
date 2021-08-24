@@ -12,9 +12,9 @@ const formSchema = yup.object().shape({
     .string()
     .required('Time is required')
     .min(5, "Time has been stopped"),
-    food: yup
+    name: yup
     .string()
-    .required('Food is required')
+    .required('Name is required')
 })
 
 export default formSchema
