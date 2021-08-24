@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import axiosWithAuth from '../../utils/axiosWithAuth';
 import {useParams} from 'react-router-dom';
 import PotluckLocation from './PotluckLocation';
 import './PotluckItems'
@@ -17,7 +17,7 @@ export default function PotluckPage(){
 
     useEffect( () => {
         console.log(`the id of this page is ${params.id}`)
-        axios.get('https://potluckplannerplus.herokuapp.com/')
+        axiosWithAuth().get('https://potluckplannerplus.herokuapp.com/')
         .then(res => {
             console.log(res.data)
             setPotluckInfo(res.data)
