@@ -8,7 +8,8 @@ import Home from "./components/Home";
 import Header from "./components/Header";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
-import Pot from "./Pot/Pot";
+import Pot from './Pot/Pot';
+import ProtectedRoute from './components/ProtectedRoute'
 
 const USER_CURRENT_TOKEN = localStorage.getItem("TOKEN");
 USER_CURRENT_TOKEN
@@ -40,6 +41,8 @@ function App() {
           {/* Insert potluck with item list here */}
           <PotluckPage />
         </Route>
+        <ProtectedRoute exact path="/potluck" component={Pot} />
+        <ProtectedRoute path='/potluck/:id' component={PotluckPage} />
       </Switch>
     </AppFull>
   );
@@ -49,6 +52,6 @@ export default App;
 
 const AppFull = styled.div`
   text-align: center;
-  background: peachpuff;
+  background: #DCCCBB;
   min-height: 100vh;
 `;
