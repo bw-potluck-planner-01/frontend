@@ -3,7 +3,6 @@ import { Switch, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 
-
 import PotluckPage from "./components/PotluckPage/PotluckPage";
 import SavedList from './Pot/SavedList'
 import Home from "./components/Home";
@@ -40,19 +39,9 @@ function App(props) {
         <Route path="/login">
           <Login />
         </Route>
-        <Route exact path="/potluck">
-          {/* Insert potluck list here */}
-          <Pot />
-        </Route>
-        <Route path="/potluck/:id">
-          {/* Insert potluck with item list here */}
-          <PotluckPage />
-        </Route>
-        <Route path='/potlucks'>
-          <SavedList />
-        </Route>
-        <ProtectedRoute exact path="/potluck" component={Pot} />
+        <ProtectedRoute exact path="/addpotluck" component={Pot}/>
         <ProtectedRoute path="/potluck/:id" component={PotluckPage} />
+        <ProtectedRoute path='/potlucks' component={SavedList}/>
       </Switch>
     </AppFull>
   );

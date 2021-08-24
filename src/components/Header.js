@@ -23,7 +23,8 @@ function Header (props) {
         <Logo src={logo} alt='logo' />
         <Headnav>
             <Link classname='null' to='/'><button>Home</button></Link>
-            {token && <Link classname='null' to='/potluck'><button>Potlucks</button></Link>}
+            {token && <Link classname='null' to='/addpotluck'><button>Add Potluck</button></Link>}
+            {token && <Link classname='null' to='/potlucks'><button>Potlucks</button></Link>}
             {!token && <Link classname='null' to='/login'><button>Login</button></Link>}
             {!token && <Link classname='null' to='/signup'><button>Signup</button></Link>}
             {token && <Link><button onClick={handleClick}>Logout</button></Link>}
