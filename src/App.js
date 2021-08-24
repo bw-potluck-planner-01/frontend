@@ -1,7 +1,11 @@
 import "./App.css";
-
 import { Switch, Route } from "react-router-dom";
 import Login from "./components/Login";
+
+const USER_CURRENT_TOKEN = localStorage.getItem("TOKEN");
+USER_CURRENT_TOKEN
+  ? console.log(`User have a token! ${JSON.parse(USER_CURRENT_TOKEN)}`)
+  : console.log(`User have no token! `);
 
 function App() {
   return (
