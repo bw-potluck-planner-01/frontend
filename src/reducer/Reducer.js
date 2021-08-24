@@ -1,21 +1,23 @@
-import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAIL } from "../action/Login";
+import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAIL } from "../action/LoginAction";
 const initialState = {
   username: "",
   password: "",
   token: null,
+  error: null,
   isLoading: false,
 };
 
 export default function Reducer(state = initialState, action) {
   switch (action.type) {
     case LOGIN_START: {
-      break;
+      return { ...state, isLoading: true, error: null };
     }
     case LOGIN_SUCCESS: {
-      break;
+      localStorage.setItem("TOKEN", JSON.stringify(action.payload));
+      return { ...state, token: action.payload, isLoading: false, error: null };
     }
     case LOGIN_FAIL: {
-      break;
+      return { ...state, error: action.payload, isLoading: false };
     }
     default: {
       return state;
