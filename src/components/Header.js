@@ -1,16 +1,25 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import styled from 'styled-components'
+
+import axiosWithAuth from '../utils/axiosWithAuth'
 import pic from '../assets/pic11.jpg'
 
 function Header () {
+    const token = localStorage.getItem('TOKEN')
+
+    function handleClick(e){
+        e.preventDefault()
+        localStorage.removeItem('TOKEN')
+    }
+
     return <Heading>
         <Headnav>
             <Link classname='null' to='/'><button>Home</button></Link>
-            <Link classname='null' to='/potluck'><button>Potlucks</button></Link>
-            <Link classname='null' to='/login'><button>Login</button></Link>
-            <Link classname='null' to='/signup'><button>Signup</button></Link>
-            <Link><button>Logout</button></Link>
+            {token && <Link classname='null' to='/potluck'><button>Potlucks</button></Link>}
+            {!token && <Link classname='null' to='/login'><button>Login</button></Link>}
+            {!token && <Link classname='null' to='/signup'><button>Signup</button></Link>}
+            {token && <Link><button onClick={handleClick}>Logout</button></Link>}
         </Headnav>
     </Heading>
 }
