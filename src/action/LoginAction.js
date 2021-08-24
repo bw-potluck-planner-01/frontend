@@ -13,7 +13,6 @@ const LoginAction = (props) => (dispatch) => {
     .post("https://potluckplannerplus.herokuapp.com/auth/login", data)
     .then((response) => {
       dispatch({ type: LOGIN_SUCCESS, payload: response.data.token });
-      console.log(response);
     })
     .catch((error) => {
       dispatch({ type: LOGIN_FAIL, payload: error.response.data.message });

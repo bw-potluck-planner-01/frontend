@@ -58,11 +58,9 @@ const Login = (props) => {
     showPassword: false,
   });
   const handleChange = (props) => (event) => {
-    console.log(values);
     setValues({ ...values, [props]: event.target.value });
   };
   const handleClickShowPassword = () => {
-    console.log(`Show password is:${values.showPassword}`);
     setValues({ ...values, showPassword: !values.showPassword });
   };
   const handleMouseDownPassword = (event) => {
