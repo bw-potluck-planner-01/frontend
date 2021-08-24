@@ -1,9 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import PotList from './PotList'
 import PotCard from './PotCard'
-import axios from 'axios';
 import * as yup from 'yup';
 import schema from './validation/formSchema'
+import styled from 'styled-components';
+import axiosWithAuth from '../utils/axiosWithAuth'
+
+const StyledLuck = styled.div`
+  header h1{
+    background-color:#8D98A7;
+    width:80%;
+    margin-left:10%;
+    color:balck;
+    border-radius:10px;
+    box-shadow: 6px 6px 7px 1px #A7754D;
+  }
+`
 
 const initialFormValues = {
     place: '',
@@ -19,6 +31,7 @@ const initialFormValues = {
   }
   const initialPot = []
   const initialDisabled = true
+  const userId = 0
 
 export default function Pot(props) {
    const [pot, setPot] = useState(initialPot)
@@ -27,14 +40,15 @@ export default function Pot(props) {
    const [disabled, setDisabled] = useState(initialDisabled)
 
    const getPot = () => {
-       axios.get('https://potluckplannerplus.herokuapp.com/')
+       axiosWithAuth().get(`https://potluckplannerplus.herokuapp.com/org/${userId}/potlucks`)
        .then(res => {
            setPot(res.data);
+           console.log(res)
        }).catch(err => console.error(err))
    }
 
    const postNewPot = newPot => {
-     axios.post('https://potluckplannerplus.herokuapp.com/')
+     axiosWithAuth().post(`https://potluckplannerplus.herokuapp.com/org/${userId}`, newPot)
      .then(res => {
          setPot([res.data, ...pot]);
      }).catch(err => console.error(err))
@@ -76,7 +90,8 @@ export default function Pot(props) {
    }, [formValues])
 
    return (
-       <div className='Pot'>
+       <StyledLuck>
+         <div className='Pot'>
            <header><h1>Create a New Potluck</h1></header>
 
            <PotList
@@ -94,6 +109,7 @@ export default function Pot(props) {
                    )
                })
            }
-       </div>
+         </div>
+       </StyledLuck>
    );
 }
