@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import { reach } from 'yup'
 import schema from '../validation/SignupSchema'
 import styled from 'styled-components';
+import axios from 'axios'
+import { useHistory } from 'react-router';
 
 const initialFormValues = {
     username: '',
@@ -13,7 +15,8 @@ const initialErrors = {
     username: 'You must supply a username',
     password: 'You must supply a password',
     password2: 'You must reenter your password',
-    robot: "You must prove you're not a robot"
+    robot: "You must prove you're not a robot",
+    backend: ''
 }
 
 //REPLACE CURRENT ERROR SYSTEM WITH FORM VALIDATION
@@ -22,6 +25,7 @@ function Signup (){
     const [formValues, setFormValues] = useState(initialFormValues)
     const [errors, setErrors] = useState(initialErrors)
     const [disabled, setDisabled] = useState(true)
+    const { push } = useHistory()
 
     useEffect(() => {
         schema.isValid(formValues).then(valid => setDisabled(!valid))
@@ -38,18 +42,22 @@ function Signup (){
 
     function handleClick (e){
         e.preventDefault()
-    }
+        const newUser = {username: formValues.username, password: formValues.password}
+        axios.post('https://potluckplannerplus.herokuapp.com/auth/register', newUser)
+            .then(res => push('/login'))
+            .catch(err => setErrors({...errors, backend: err.response.data.message}))
+    }   
 
     const validate = (name, value) => {
         reach(schema, name)
           .validate(value)
-          .then(() => setErrors({ ...errors, [name]: '' }))
+          .then(() => setErrors({ ...errors, [name]: ''}))
           .catch(err => setErrors({ ...errors, [name]: err.errors[0]}))
       }
 
     return <div className='signup'>
         <h2>Signup</h2>
-        <form onSubmit={{handleClick}}>
+        <form onSubmit={handleClick}>
             <Formdiv>
                 <label htmlFor='username'>Username: </label>
                 <input id='username' name='username' value={formValues.username} onChange={handleChange} />
@@ -70,6 +78,7 @@ function Signup (){
         <Ep>{errors.password}</Ep>
         <Ep>{errors.password2}</Ep>
         <Ep>{errors.robot}</Ep>
+        <Ep>{errors.backend}</Ep>
     </div>
 }
 

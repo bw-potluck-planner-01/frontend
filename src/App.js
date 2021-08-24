@@ -47,6 +47,6 @@ export default App;
 
 const AppFull = styled.div`
   text-align: center;
-  background: peachpuff;
+  background: #DCCCBB;
   min-height: 100vh;
 `
