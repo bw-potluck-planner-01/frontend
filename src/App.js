@@ -1,6 +1,7 @@
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import styled from "styled-components";
+import {useEffect} from 'react'
 
 import PotluckPage from "./components/PotluckPage/PotluckPage";
 import Home from "./components/Home";
@@ -18,6 +19,7 @@ USER_CURRENT_TOKEN
 
 function App(props) {
   useEffect(() => {}, [props.token]);
+  
   return (
     <AppFull>
       {/* Insert Header here */}
