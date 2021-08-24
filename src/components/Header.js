@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import styled from 'styled-components'
 import {connect} from 'react-redux'
 
@@ -9,11 +9,13 @@ import {logoutTemp} from '../action/LoginAction'
 
 function Header (props) {
     const {token} = props
+    const { push } = useHistory()
 
     function handleClick(e){
         e.preventDefault()
         localStorage.removeItem('TOKEN')
         props.logoutTemp()
+        push('/')
     }
 
     return <Heading>
