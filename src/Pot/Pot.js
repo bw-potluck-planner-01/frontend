@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PotList from './PotList'
 import PotCard from './PotCard'
-import axios from 'axios';
 import * as yup from 'yup';
 import schema from './validation/formSchema'
 import styled from 'styled-components';
@@ -32,6 +31,7 @@ const initialFormValues = {
   }
   const initialPot = []
   const initialDisabled = true
+  const userId = 0
 
 export default function Pot(props) {
    const [pot, setPot] = useState(initialPot)
