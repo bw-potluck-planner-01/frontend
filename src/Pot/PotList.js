@@ -5,15 +5,25 @@ import styled from 'styled-components';
 const StyledPotluck = styled.div`
   .form{
       background-color:DCCCBB;
-      
   }
   .inputs{
     display:flex;
     justify-content: center;
     aling-content: space-between
-    flex-flow:column wrap;
+    flex-flow:wrap;
+    width:95%;
   }
   input{
+    border-radius:10px;
+    box-shadow: 6px 6px 7px 1px #A7754D;
+  }
+  p{
+    color:white;
+    background-color:#646E78;
+    display:flex;
+    justify-content: center;
+    width:95%;
+    margin-left:2.5%;
     border-radius:10px;
   }
   #submitBtn{
@@ -31,7 +41,7 @@ const StyledPotluck = styled.div`
     box-shadow: 0px 0px 0px 0px;
   }
   input:hover{
-    box-shadow: 6px 6px 7px 1px #A7754D; 
+    box-shadow: 0px 0px 0px 0px; 
   }
   .errors{
     border-radius:10px;
@@ -75,7 +85,7 @@ export default function PotForm(props) {
             </div>
 
             <div className='form-potluck inputs'>
-                <label>Location
+                <label><p>Location</p>
                     <input
                        value={values.place}
                        onChange={onChange}
@@ -84,7 +94,7 @@ export default function PotForm(props) {
                     />
                 </label>
 
-                <label>Date
+                <label><p>Date</p>
                     <input
                        value={values.date}
                        onChange={onChange}
@@ -93,7 +103,7 @@ export default function PotForm(props) {
                     />
                 </label>
 
-                <label>Time
+                <label><p>Time</p>
                     <input
                        value={values.time}
                        onChange={onChange}
@@ -102,7 +112,7 @@ export default function PotForm(props) {
                     />
                 </label>
 
-                <label>Food
+                <label><p>Food</p>
                     <input
                        value={values.food}
                        onChange={onChange}
