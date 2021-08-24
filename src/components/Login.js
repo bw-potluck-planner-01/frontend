@@ -6,6 +6,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import LoginAction from "../action/LoginAction";
 import { Alert } from "@material-ui/lab";
+import { useHistory } from "react-router-dom";
 
 function mapStateToProps(state) {
   return {
@@ -15,6 +16,7 @@ function mapStateToProps(state) {
   };
 }
 const Login = (props) => {
+  const history = useHistory();
   const useStyles = makeStyles((theme) => ({
     root: {
       display: "flex",
@@ -43,6 +45,12 @@ const Login = (props) => {
       padding: "0% auto",
       marginTop: "1%",
     },
+    form: {
+      width: "100%",
+      margin: "0% auto",
+      padding: "2%",
+      marginTop: "1%",
+    },
   }));
   const [values, setValues] = useState({
     username: "",
@@ -61,11 +69,7 @@ const Login = (props) => {
     event.preventDefault();
   };
   const handleSignUp = (event) => {
-    console.log("redirect to signup page!");
-    event.preventDefault();
-  };
-  const handleHelp = (event) => {
-    console.log("Help Action!");
+    history.push("/signup");
     event.preventDefault();
   };
   const handleSubmit = (event) => {
@@ -75,9 +79,11 @@ const Login = (props) => {
   };
   const classes = useStyles();
   return (
-    <>
-      <div>
+    <div>
+      <>
         <h1>Potluck Planner</h1>
+      </>
+      <div id="FormHolder">
         <div className="login-form">
           <div className={classes.root}>
             <material.FormControl className={classes.input}>
@@ -131,20 +137,11 @@ const Login = (props) => {
                   {props.error}
                 </Alert>
               ) : null}
-              <material.Button
-                id="help"
-                onClick={handleHelp}
-                className={classes.button}
-                variant="outlined"
-                color="secondary"
-              >
-                Need Help?
-              </material.Button>
             </material.FormControl>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 export default connect(mapStateToProps, { LoginAction })(Login);
