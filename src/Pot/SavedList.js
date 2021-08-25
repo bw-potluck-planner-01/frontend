@@ -48,6 +48,14 @@ export default function SavedLuck(props) {
         })
         .catch(err => setSearchErrors(err.errors[0]))
     }
+    const Btn = (obj) => {
+        if(obj.organizer_id === user_id){
+            return(
+              <button>Delete</button>
+            )
+        }else{return (<button>Join</button>)}
+    }
+    
     return (
         <div className='savedLuck'>
             <div className='serach-errors'>
@@ -67,6 +75,7 @@ export default function SavedLuck(props) {
              <span>{evt.location}</span>
              <span>{evt.date}</span>
              <span>{evt.time}</span>
+            
             </div>
         )
             })}
