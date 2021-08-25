@@ -1,7 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import SavedList from './SavedList';
+
 
 const StyledPotluck = styled.div`
   .form{
@@ -82,7 +82,7 @@ export default function PotForm(props) {
                <div>{errors.place}</div>
                <div>{errors.date}</div>
                <div>{errors.time}</div>
-               <div>{errors.food}</div>
+               <div>{errors.Organiser}</div>
             </div>
 
             <div className='form-potluck inputs'>
@@ -113,18 +113,17 @@ export default function PotForm(props) {
                     />
                 </label>
 
-                <label><p>Name</p>
+                <label><p>Organiser</p>
                     <input
-                       value={values.name}
+                       value={values.Organiser}
                        onChange={onChange}
-                       name='name'
+                       name='Organiser'
                        type="text"
                     />
                 </label>
             </div>
             <button id='submitBtn' disabled={disabled}>Submit</button>
         </form>
-        <SavedList />
         </StyledPotluck>
     )
 }
