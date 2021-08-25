@@ -19,7 +19,13 @@ const initialErrors = {
     backend: ''
 }
 
-//REPLACE CURRENT ERROR SYSTEM WITH FORM VALIDATION
+const blankErrors = {
+    username: '',
+    password: '',
+    password2: '',
+    robot: "",
+    backend: ''
+}
 
 function Signup (){
     const [formValues, setFormValues] = useState(initialFormValues)
@@ -28,7 +34,12 @@ function Signup (){
     const { push } = useHistory()
 
     useEffect(() => {
-        schema.isValid(formValues).then(valid => setDisabled(!valid))
+        schema.isValid(formValues).then(valid => {
+            setDisabled(!valid);
+            if (valid){
+                setErrors(blankErrors)
+            }
+        })
     }, [formValues])
 
     function handleChange (e){
