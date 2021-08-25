@@ -67,7 +67,7 @@ function Pot(props) {
 
    const formSubmit = () => {
      const newPotluck = {
-        place: formValues.place,
+        location: formValues.place,
         date: formValues.date,
         time: formValues.time,
         potluck_name: formValues.name,
