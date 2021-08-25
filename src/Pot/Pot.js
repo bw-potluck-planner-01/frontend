@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import axiosWithAuth from '../utils/axiosWithAuth'
 import { useHistory } from 'react-router';
 
+
 const StyledLuck = styled.div`
   header h1{
     background-color:#8D98A7;
@@ -21,13 +22,13 @@ const initialFormValues = {
     place: '',
     date: '',
     time: '',
-    name: '',
+    Organiser: '',
   }
   const initialFormErrors = {
     place: '',
     date: '',
     time: '',
-    name: '',
+    Organiser: '',
   }
   const initialDisabled = true
   const userId = 1
@@ -67,7 +68,7 @@ export default function Pot(props) {
         place: formValues.place,
         date: formValues.date,
         time: formValues.time,
-        name: formValues.name,
+        Organiser: formValues.Organiser,
      }
      postNewPot(newPotluck)
    }
