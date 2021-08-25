@@ -107,7 +107,10 @@ function SavedLuck(props) {
     const Btn = (obj) => {
         if(obj.organizer_id == user_id){
             return(
+                <>
               <button className='delete'>Delete</button>
+              <Link to={`/potlucks/${obj.potluck_id}`}><button>Edit</button></Link>
+              </>
             )
         }else{return (<Link to={`/potlucks/${obj.potluck_id}`}><button>Join</button></Link>)}
     }
