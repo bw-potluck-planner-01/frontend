@@ -6,11 +6,11 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 import { applyMiddleware, createStore } from "redux";
 import thunk from "redux-thunk";
-import { Logger } from "logger";
+import logger from 'redux-logger'
 import Reducer from "./reducer/Reducer";
 import { Provider } from "react-redux";
 
-const store = createStore(Reducer, applyMiddleware(thunk));
+const store = createStore(Reducer, applyMiddleware(thunk, logger));
 
 ReactDOM.render(
   <React.StrictMode>
