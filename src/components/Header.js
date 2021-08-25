@@ -3,9 +3,8 @@ import {Link, useHistory} from 'react-router-dom'
 import styled from 'styled-components'
 import {connect} from 'react-redux'
 
-import axiosWithAuth from '../utils/axiosWithAuth'
 import pic from '../assets/pic11.jpg'
-import {logoutTemp} from '../action/LoginAction'
+import {logoutAction} from '../action/LoginAction'
 import logo from '../assets/logo-sndw.png'
 
 function Header (props) {
@@ -14,8 +13,7 @@ function Header (props) {
 
     function handleClick(e){
         e.preventDefault()
-        localStorage.removeItem('TOKEN')
-        props.logoutTemp()
+        props.logoutAction()
         push('/')
     }
 
@@ -38,7 +36,7 @@ function mapStateToProps (state){
       };
 }
 
-export default connect (mapStateToProps, {logoutTemp})(Header)
+export default connect (mapStateToProps, {logoutAction})(Header)
 
 const Logo = styled.img`
     width: 100px;

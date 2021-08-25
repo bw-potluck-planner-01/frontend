@@ -5,6 +5,9 @@ import schema from './validation/formSchema'
 import styled from 'styled-components';
 import axiosWithAuth from '../utils/axiosWithAuth'
 import { useHistory } from 'react-router';
+import { connect } from 'react-redux';
+import { truncate } from 'prelude-ls';
+
 
 const StyledLuck = styled.div`
   header h1{
@@ -29,20 +32,20 @@ const initialFormValues = {
     time: '',
     name: '',
   }
-  const initialDisabled = true
-  const userId = 1
+  const initialDisabled = truncate
 
-export default function Pot(props) {
+function Pot(props) {
    const [formValues, setFormValues] = useState(initialFormValues)
    const [formErrors, setFormErrors] = useState(initialFormErrors)
    const [disabled, setDisabled] = useState(initialDisabled)
    const {push} = useHistory()
+   const {userId} = props
 
    const postNewPot = newPot => {
      axiosWithAuth().post(`https://potluckplannerplus.herokuapp.com/org/${userId}`, newPot)
      .then(res => {
          push('/potlucks')
-     }).catch(err => console.error(err))
+     }).catch(err => console.error(err.response))
      setFormValues(initialFormValues)
    }
 
@@ -64,10 +67,10 @@ export default function Pot(props) {
 
    const formSubmit = () => {
      const newPotluck = {
-        place: formValues.place,
+        location: formValues.place,
         date: formValues.date,
         time: formValues.time,
-        name: formValues.name,
+        potluck_name: formValues.name,
      }
      postNewPot(newPotluck)
    }
@@ -92,3 +95,11 @@ export default function Pot(props) {
        </StyledLuck>
    );
 }
+
+function mapStateToProps (state){
+  return ({
+    userId: state.userId
+  })
+}
+
+export default connect(mapStateToProps)(Pot)

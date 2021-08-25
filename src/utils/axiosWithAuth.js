@@ -6,7 +6,7 @@ function axiosWithAuth(){
     return axios.create({
         headers: {
             authorization: token
-        }
+        },
     })
 }
 
