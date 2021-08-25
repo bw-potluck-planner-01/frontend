@@ -36,7 +36,7 @@ export const logoutAction = () => (dispatch) => {
       localStorage.removeItem('user_id')
     })
     .catch(err => {
-      console.log(err)
+      console.log(err.response)
       dispatch({type: LOGOUT_FAIL, payload: err.response.data.message})
     })
 }

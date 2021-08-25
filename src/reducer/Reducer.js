@@ -23,7 +23,7 @@ export default function Reducer(state = initialState, action) {
       return { ...state, isLoading: true, error: null };
     }
     case LOGIN_SUCCESS: {
-      localStorage.setItem("TOKEN", JSON.stringify(action.payload.token));
+      localStorage.setItem("TOKEN", action.payload.token);
       localStorage.setItem('user_id', action.payload.organizer_id)
       return { ...state, token: action.payload.token, isLoading: false, error: null, userId: action.payload.organizer_id };
     }

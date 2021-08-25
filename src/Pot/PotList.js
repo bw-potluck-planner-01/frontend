@@ -64,7 +64,7 @@ export default function PotForm(props) {
     } = props
 
     const onSubmit = evt => {
-        evt.perventDefault()
+        evt.preventDefault()
         submit()
         push(`/potlucks`)
     }
