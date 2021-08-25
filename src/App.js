@@ -3,6 +3,8 @@ import { Switch, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 
+import { grabToken } from "./action/LoginAction";
+
 import PotluckPage from "./components/PotluckPage/PotluckPage";
 import SavedList from './Pot/SavedList'
 import Home from "./components/Home";
@@ -20,6 +22,7 @@ USER_CURRENT_TOKEN
 
 function App(props) {
   useEffect(() => {
+    props.grabToken({token: USER_CURRENT_TOKEN, userId: localStorage.getItem('user_id')})
     console.log(props.token);
   }, []);
   return (
@@ -51,7 +54,7 @@ const mapStateToProps = (state) => {
     token: state.token,
   };
 };
-export default connect(mapStateToProps, {})(App);
+export default connect(mapStateToProps, {grabToken})(App);
 
 const AppFull = styled.div`
   text-align: center;
