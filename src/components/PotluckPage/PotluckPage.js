@@ -10,14 +10,15 @@ export default function PotluckPage(){
     const params = useParams();
     console.log(params);
     const [potluckInfo, setPotluckInfo] = useState ({
-        place: '',
+        potluck_name: '',
         date: '',
-        time: ''
+        time: '',
+        location: ''
     });
 
     useEffect( () => {
         console.log(`the id of this page is ${params.id}`)
-        axiosWithAuth().get('https://potluckplannerplus.herokuapp.com/')
+        axiosWithAuth().get(`https://potluckplannerplus.herokuapp.com/org/${params.id}/potlucks`)
         .then(res => {
             console.log(res.data)
             setPotluckInfo(res.data)
@@ -30,9 +31,10 @@ export default function PotluckPage(){
     return(
         <div className="PotluckPage">
             <PotluckLocation
-                place={potluckInfo.place}
+                potluck_name={potluckInfo.potluck_name}
                 date={potluckInfo.date}
                 time={potluckInfo.time}
+                location={potluckInfo.location}
             />
         </div>
     )
