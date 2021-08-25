@@ -24,13 +24,13 @@ const initialFormValues = {
     place: '',
     date: '',
     time: '',
-    Organiser: '',
+    name: '',
   }
   const initialFormErrors = {
     place: '',
     date: '',
     time: '',
-    Organiser: '',
+    name: '',
   }
   const initialDisabled = truncate
 
@@ -67,10 +67,10 @@ function Pot(props) {
 
    const formSubmit = () => {
      const newPotluck = {
-        place: formValues.place,
+        location: formValues.place,
         date: formValues.date,
         time: formValues.time,
-        Organiser: formValues.Organiser,
+        potluck_name: formValues.name,
      }
      postNewPot(newPotluck)
    }

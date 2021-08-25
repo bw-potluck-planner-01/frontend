@@ -82,7 +82,7 @@ export default function PotForm(props) {
                <div>{errors.place}</div>
                <div>{errors.date}</div>
                <div>{errors.time}</div>
-               <div>{errors.Organiser}</div>
+               <div>{errors.name}</div>
             </div>
 
             <div className='form-potluck inputs'>
@@ -113,11 +113,11 @@ export default function PotForm(props) {
                     />
                 </label>
 
-                <label><p>Organiser</p>
+                <label><p>name</p>
                     <input
-                       value={values.Organiser}
+                       value={values.name}
                        onChange={onChange}
-                       name='Organiser'
+                       name='name'
                        type="text"
                     />
                 </label>
