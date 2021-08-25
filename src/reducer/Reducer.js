@@ -10,6 +10,7 @@ const initialState = {
   token: null,
   error: null,
   isLoading: false,
+  userId: null,
 };
 
 export default function Reducer(state = initialState, action) {
@@ -18,15 +19,15 @@ export default function Reducer(state = initialState, action) {
       return { ...state, isLoading: true, error: null };
     }
     case LOGIN_SUCCESS: {
-      localStorage.setItem("TOKEN", JSON.stringify(action.payload));
-      return { ...state, token: action.payload, isLoading: false, error: null };
+      localStorage.setItem("TOKEN", JSON.stringify(action.payload.token));
+      return { ...state, token: action.payload.token, isLoading: false, error: null, userId: action.payload.organizer_id };
     }
     case LOGIN_FAIL: {
       return { ...state, error: action.payload, isLoading: false };
     }
 
     case LOGOUT_TEMP: {
-      return { ...state, token: null };
+      return { ...state, token: null, userId: null };
     }
     default: {
       const USER_CURRENT_TOKEN = localStorage.getItem("TOKEN");
