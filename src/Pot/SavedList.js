@@ -4,7 +4,62 @@ import styled from "styled-components";
 import * as yup from 'yup';
 import schema from './validation/searchSchema'
 import { connect } from 'react-redux'
+import {Link} from 'react-router-dom'
 
+const StyledSave = styled.div`
+  #searchBtn{
+    width:30%;
+  }
+  button{
+    background-color:#8D98A7;
+    width:50%;
+    color:balck;
+    border-radius:10px;
+  }
+  button:hover{
+    color:white;
+    background-color:green;
+    font-size:120%;
+  }
+  .potluck-card{
+    color:black;
+    background-color:#EAB464;
+    font-size:100%;
+    box-shadow: 6px 6px 7px 1px #A7754D;
+    width:30%;
+    margin-left:35%;
+    border-radius:10px;
+  }
+ input{
+        border-radius:10px;
+        width:29%;
+        display:flex;
+        margin-left:35%;
+ }
+ input:hover{
+    box-shadow: 6px 6px 7px 1px #A7754D;
+ }
+ p{
+     font-size: 110%
+  }
+  h4{
+      font-size: 120%
+  }
+  .search-errors{
+    border-radius:10px;
+    color:red;
+    background-color:#EAB464;
+    width:30%;
+    margin-left:35%;
+    margin-top:1%;
+    margin-bottom:1%;
+    box-shadow: 6px 6px 7px 1px #A7754D;
+  }
+  .delete:hover{
+    background-color:red;
+    font-size:120%;
+  }
+`
 
 function SavedLuck(props) {
     const [search, setSearch] = useState('')
@@ -52,14 +107,17 @@ function SavedLuck(props) {
     const Btn = (obj) => {
         if(obj.organizer_id == user_id){
             return(
-              <button>Delete</button>
+              <button className='delete'>Delete</button>
             )
-        }else{return (<button>Join</button>)}
+        }else{return (<Link to={`/potlucks/${obj.potluck_id}`}><button>Join</button></Link>)}
     }
-    
+    const Delete = () => {
+
+    }    
     return (
+     <StyledSave>
         <div className='savedLuck'>
-            <div className='serach-errors'>
+            <div className='search-errors'>
                 <div>{searchErrors}</div>
             </div>
             <input
@@ -69,18 +127,18 @@ function SavedLuck(props) {
              type="text"
             />
             <button id='searchBtn' disabled={disabled} onClick={onSubmit}>Search</button>
-
         {pot.map(evt => { return (
             <div className='potluck-card'>
              <h4>{evt.potluck_name}</h4>
-             <span>{evt.location}</span>
-             <span>{evt.date}</span>
-             <span>{evt.time}</span>
+             <p>{evt.location}</p>
+             <p>{evt.date}</p>
+             <p>{evt.time}</p>
              {Btn(evt)}
             </div>
         )
             })}
-        </div>
+            </div>
+     </StyledSave>
     )
 }
 

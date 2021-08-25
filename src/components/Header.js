@@ -57,6 +57,7 @@ const Headnav = styled.nav`
       color:black;
       background-color:#EAB464;
       font-size:90%;
+
     }
     button:hover{
         box-shadow: 2px 2px 0px 0px black;
