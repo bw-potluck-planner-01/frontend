@@ -42,6 +42,7 @@ export default connect (mapStateToProps, {logoutTemp})(Header)
 
 const Logo = styled.img`
     width: 100px;
+    background: #EAB464;
 `
 
 const Headnav = styled.nav`
