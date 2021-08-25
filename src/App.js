@@ -23,7 +23,6 @@ USER_CURRENT_TOKEN
 function App(props) {
   useEffect(() => {
     props.grabToken({token: USER_CURRENT_TOKEN, userId: localStorage.getItem('user_id')})
-    console.log(props.token);
   }, []);
   return (
     <AppFull>
