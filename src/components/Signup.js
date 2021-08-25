@@ -76,7 +76,7 @@ function Signup (){
             </Formdiv>
                 <p>Please type 'I am not a robot' in the space below</p>
                 <Styinput name='robot' value={formValues.robot} onChange={handleChange} />
-                <div><Stybutton disabled={disabled}>SIGN UP</Stybutton></div>
+                <div>{disabled ? <Disbutton disabled={disabled}>SIGN UP</Disbutton> : <Stybutton disabled={disabled}>SIGN UP</Stybutton>}</div>
         </form>
         <Ediv>
             {errors.username !== '' && <Ep>{errors.username}</Ep>}
@@ -117,11 +117,18 @@ const Styinput = styled.input`
     border: none;
     border-bottom: 1px solid black;
 `
+const buttons = `border: 1px solid #646E78;
+width: 25%;
+padding: 2%;`
 
 const Stybutton = styled.button `
     background: #DCCCBB;
     color: #646E78;
-    border: 1px solid #646E78;
-    width: 25%;
-    padding: 2%;
+    ${buttons}
+`
+
+const Disbutton = styled.button`
+    ${buttons}
+    background: #646E78;
+    color: red;
 `
