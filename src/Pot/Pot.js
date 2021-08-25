@@ -41,13 +41,11 @@ function Pot(props) {
    const {push} = useHistory()
    const {userId} = props
 
-   console.log(userId)
-
    const postNewPot = newPot => {
      axiosWithAuth().post(`https://potluckplannerplus.herokuapp.com/org/${userId}`, newPot)
      .then(res => {
          push('/potlucks')
-     }).catch(err => console.error(err))
+     }).catch(err => console.error(err.response))
      setFormValues(initialFormValues)
    }
 
