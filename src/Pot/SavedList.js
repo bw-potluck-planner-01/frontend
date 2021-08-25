@@ -3,14 +3,15 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import * as yup from 'yup';
 import schema from './validation/searchSchema'
+import { connect } from 'react-redux'
 
 
-
-export default function SavedLuck(props) {
+function SavedLuck(props) {
     const [search, setSearch] = useState('')
     const [pot, setPot] = useState([])
     const [disabled, setDisabled] = useState(true)
     const [searchErrors, setSearchErrors] = useState('')
+    const {user_id} = props
     console.log(pot)
     console.log(search)
     const getPot = () => {
@@ -49,7 +50,7 @@ export default function SavedLuck(props) {
         .catch(err => setSearchErrors(err.errors[0]))
     }
     const Btn = (obj) => {
-        if(obj.organizer_id === user_id){
+        if(obj.organizer_id == user_id){
             return(
               <button>Delete</button>
             )
@@ -75,10 +76,18 @@ export default function SavedLuck(props) {
              <span>{evt.location}</span>
              <span>{evt.date}</span>
              <span>{evt.time}</span>
-            
+             {Btn(evt)}
             </div>
         )
             })}
         </div>
     )
 }
+
+function mapStateToProps (state){
+    return ({
+        user_id: state.userId
+    })
+}
+
+export default connect(mapStateToProps)(SavedLuck)
