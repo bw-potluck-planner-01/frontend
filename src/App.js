@@ -40,7 +40,7 @@ function App(props) {
           <Login />
         </Route>
         <ProtectedRoute exact path="/addpotluck" component={Pot}/>
-        <ProtectedRoute path="/potluck/:id" component={PotluckPage} />
+        <ProtectedRoute path="/potlucks/:id" component={PotluckPage} />
         <ProtectedRoute path='/potlucks' component={SavedList}/>
       </Switch>
     </AppFull>
