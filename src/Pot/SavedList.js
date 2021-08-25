@@ -50,7 +50,7 @@ export default function SavedLuck(props) {
             />
             <button id='searchBtn' disabled={disabled}>Search</button>
             <div className='potluck-card'>
-                <h4>{pot.Organiser}</h4>
+                <h4>{pot.name}</h4>
                 <span>{pot.place}</span>
                 <span>{pot.date}</span>
                 <span>{pot.time}</span>

@@ -12,7 +12,7 @@ const formSchema = yup.object().shape({
       .string()
       .required('Time is required')
       .min(5, "Time has been stopped"),
-    Organiser: yup
+      name: yup
       .string()
       .required('Name is required')
 })
