@@ -23,7 +23,7 @@ const blankErrors = {
     username: '',
     password: '',
     password2: '',
-    robot: "",
+    robot: '',
     backend: ''
 }
 
@@ -56,7 +56,10 @@ function Signup (){
         const newUser = {username: formValues.username, password: formValues.password}
         axios.post('https://potluckplannerplus.herokuapp.com/auth/register', newUser)
             .then(res => push('/login'))
-            .catch(err => setErrors({...errors, backend: err.response.data.message}))
+            .catch(err => {
+                setErrors({...errors, backend: err.response.data.message});
+                console.log(err.response);
+            })
     }   
 
     const validate = (name, value) => {
@@ -65,6 +68,8 @@ function Signup (){
           .then(() => setErrors({ ...errors, [name]: ''}))
           .catch(err => setErrors({ ...errors, [name]: err.errors[0]}))
       }
+
+    console.log(errors)
 
     return <div className='signup'>
         <h2>Signup</h2>
