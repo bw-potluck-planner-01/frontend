@@ -30,6 +30,7 @@ const StyledPotluck = styled.div`
   #submitBtn{
       padding: 2%;
       margin: 5%;
+      margin-left:1%;
       border-radius:10px;
       color:#646E78;
       background-color:#EAB464;

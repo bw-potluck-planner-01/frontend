@@ -13,7 +13,7 @@ const StyledItems = styled.div`
     font-size:100%;
     box-shadow: 6px 6px 7px 0px #A7754D;
     border:2px dashed #EAB464;
-    width:47%;
+    width:10vw;
     margin: 1%auto;
     
     border-radius:10px;
