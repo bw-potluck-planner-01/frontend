@@ -186,9 +186,7 @@ const Login = (props) => {
                             }
                           />
                           <Alert className={classes.alert2} severity="info">
-                            {`What's a good dish to bring to a potluck? ${
-                              mealList[Math.floor(Math.random() * 12)]
-                            }`}
+                            {`What's a good dish to bring to a potluck? ${mealList[X]}`}
                           </Alert>
                           <material.ButtonGroup>
                             <material.Button
@@ -238,6 +236,7 @@ const Login = (props) => {
 };
 export default connect(mapStateToProps, { LoginAction })(Login);
 
+const X = Math.floor(Math.random() * 12);
 const mealList = [
   "Olive Tapenade",
   "Pizza Stuffed Mushrooms",
