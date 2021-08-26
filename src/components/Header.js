@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import * as material from "@material-ui/core";
 import * as ui from "@material-ui/icons";
 import { logoutAction } from "../action/LoginAction";
-
+import potluck3 from "../assets/potluck3.js";
 function Header(props) {
   const { token } = props;
   const { push } = useHistory();
