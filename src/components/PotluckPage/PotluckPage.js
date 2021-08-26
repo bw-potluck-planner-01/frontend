@@ -20,6 +20,7 @@ const StyledPage = styled.div`
     margin-left:35%;
     margin-top:1%;
     border-radius:10px;
+    box-sizing:border-box;
 }
 `
 

@@ -123,7 +123,6 @@ function SavedLuck(props) {
             return(
              <>
               <button className='delete' onClick={Delete}>Delete</button>
-              <Link to={`/potlucks/${obj.potluck_id}`}><button>Add</button></Link>
              </>
             )
         }else{return (<Link to={`/potlucks/${obj.potluck_id}`}><button>Join</button></Link>)}    
