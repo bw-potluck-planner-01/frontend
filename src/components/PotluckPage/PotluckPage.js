@@ -27,6 +27,7 @@ export default function PotluckPage() {
                 setPotluckInfo(res.data)
                 axiosWithAuth().get(`https://potluckplannerplus.herokuapp.com/potlucks/${params.id}/menu`)
                     .then(res => {
+                        console.log('something')
                         console.log(res.data)
                         setPotluckItems(res.data)
                     })
@@ -46,8 +47,8 @@ export default function PotluckPage() {
                 date={potluckInfo.date}
                 time={potluckInfo.time}
                 location={potluckInfo.location}
-            />                                          {/* CHANGE THE 1 TO WHATEVER THE POTLUCK ID IS ASAP */}
-            <PotluckItems items={potluckItems} potluckId={1} />
+            />                                         
+            <PotluckItems items={potluckItems} setItems={setPotluckItems} />
         </div>
     )
 
