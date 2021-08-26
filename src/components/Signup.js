@@ -44,11 +44,11 @@ function Signup (){
 
     function handleChange (e){
         const {name, value} = e.target
-        validate(name, value)
         setFormValues({
             ...formValues,
             [name]: value
         })
+        validate(name, value)
     }
 
     function handleClick (e){
@@ -57,7 +57,9 @@ function Signup (){
         axios.post('https://potluckplannerplus.herokuapp.com/auth/register', newUser)
             .then(res => push('/login'))
             .catch(err => {
-                setErrors({...errors, backend: err.response.data.message});
+                err.response.data.message ? 
+                setErrors({...errors, backend: err.response.data.message}) :
+                setErrors({...errors, backend: err.response.data});
                 console.log(err.response);
             })
     }   
@@ -65,11 +67,11 @@ function Signup (){
     const validate = (name, value) => {
         reach(schema, name)
           .validate(value)
-          .then(() => setErrors({ ...errors, [name]: ''}))
+          .then(valid => valid ? setErrors({ ...errors, [name]: ''}) : null)
           .catch(err => setErrors({ ...errors, [name]: err.errors[0]}))
       }
 
-    console.log(errors)
+    console.log(errors.password2)
 
     return <div className='signup'>
         <h2>Signup</h2>
