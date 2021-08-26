@@ -19,20 +19,23 @@ const StyledSave = styled.div`
   button:hover{
     color:white;
     background-color:green;
-    font-size:120%;
   }
   .potluck-card{
+    display:flex;
+    flex-flow:wrap column;
     color:black;
     background-color:#EAB464;
     font-size:100%;
-    box-shadow: 6px 6px 7px 1px #A7754D;
+    box-shadow: 6px 6px 7px 0px #A7754D;
+    border:2px dashed #8D98A7;
     width:30%;
     margin-left:35%;
+    margin-top:1%;
     border-radius:10px;
   }
  input{
         border-radius:10px;
-        width:29%;
+        width:29.5%;
         display:flex;
         margin-left:35%;
  }
@@ -55,6 +58,9 @@ const StyledSave = styled.div`
     margin-bottom:1%;
     box-shadow: 6px 6px 7px 1px #A7754D;
   }
+  .delete{
+    margin-left:25%;
+  }
   .delete:hover{
     background-color:red;
     font-size:120%;
@@ -66,9 +72,11 @@ function SavedLuck(props) {
     const [pot, setPot] = useState([])
     const [disabled, setDisabled] = useState(true)
     const [searchErrors, setSearchErrors] = useState('')
+    const [reload, setReload] = useState(false)
     const {user_id} = props
     console.log(pot)
     console.log(search)
+
     const getPot = () => {
         axiosWithAuth().get(`https://potluckplannerplus.herokuapp.com/potlucks`)
         .then(res => {
@@ -77,7 +85,7 @@ function SavedLuck(props) {
     }
     useEffect(() => {
         getPot()
-    }, [])
+    }, [reload])
 
     const onSearch = evt => {
         const { name, value } = evt.target
@@ -105,18 +113,21 @@ function SavedLuck(props) {
         .catch(err => setSearchErrors(err.errors[0]))
     }
     const Btn = (obj) => {
+      const Delete = () => {
+        axiosWithAuth().delete(`https://potluckplannerplus.herokuapp.com/potlucks/${obj.potluck_id}`)
+        .then(res => {
+          setReload(!reload)
+        })
+      }  
         if(obj.organizer_id == user_id){
             return(
              <>
-              <button className='delete'>Delete</button>
+              <button className='delete' onClick={Delete}>Delete</button>
               <Link to={`/potlucks/${obj.potluck_id}`}><button>Add</button></Link>
              </>
             )
-        }else{return (<Link to={`/potlucks/${obj.potluck_id}`}><button>Join</button></Link>)}
-    }
-    const Delete = () => {
-      axiosWithAuth().delete(`https://potluckplannerplus.herokuapp.com/potlucks/${potluck_id}`)
-    }    
+        }else{return (<Link to={`/potlucks/${obj.potluck_id}`}><button>Join</button></Link>)}    
+  }  
     return (
      <StyledSave>
         <div className='savedLuck'>
