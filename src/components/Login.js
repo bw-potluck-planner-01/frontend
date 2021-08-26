@@ -45,6 +45,13 @@ const Login = (props) => {
       padding: "0% auto",
       marginTop: "1%",
     },
+    alert2: {
+      width: "90%",
+      textAlign: "center",
+      margin: "0% auto",
+      fontSize: "80%",
+      padding: "0% auto",
+    },
     info: {
       display: "flex",
       flexDirection: "column",
@@ -178,6 +185,9 @@ const Login = (props) => {
                               </material.IconButton>
                             }
                           />
+                          <Alert className={classes.alert2} severity="info">
+                            {`What's a good dish to bring to a potluck? ${mealList[X]}`}
+                          </Alert>
                           <material.ButtonGroup>
                             <material.Button
                               id="login"
@@ -225,3 +235,19 @@ const Login = (props) => {
   );
 };
 export default connect(mapStateToProps, { LoginAction })(Login);
+
+const X = Math.floor(Math.random() * 12);
+const mealList = [
+  "Olive Tapenade",
+  "Pizza Stuffed Mushrooms",
+  "Cheese Ball Antipasto",
+  "Apple &amp; Brie Crostini with Hot Honey ",
+  "Rainbow Pasta Salad",
+  "Pineapple Salsa",
+  "Shrimp Remoulade Lettuce Cups",
+  "Sheet Pan Pizza",
+  "Mediterranean Mezze Platter",
+  "Epic Beef Nachos Supreme (Better Than Taco Bell)",
+  "Rotel Dip (Loaded Velveeta Cheese Dip)",
+  "Champagne Punch",
+];
