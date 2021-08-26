@@ -85,7 +85,7 @@ const Login = (props) => {
       color: "gray",
       margin: "0% auto",
       padding: "0% auto",
-      height: "90vh",
+      height: "95vh",
       fontFamily: [
         "-apple-system",
         "BlinkMacSystemFont",
@@ -200,7 +200,6 @@ const Login = (props) => {
                           </material.ButtonGroup>{" "}
                         </material.FormControl>
                       </div>
-
                       {!!props.error ? (
                         <Alert className={classes.alert} severity="error">
                           {props.error}
