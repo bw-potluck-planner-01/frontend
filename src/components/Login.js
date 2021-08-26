@@ -64,7 +64,7 @@ const Login = (props) => {
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
-      background: "white",
+      background: "#fffcf7",
       width: "50%",
       margin: "0% auto",
       padding: "0% auto",
@@ -212,7 +212,7 @@ const Login = (props) => {
             </div>
             <material.Grow in={true}>
               <div className={classes.rightSide}>
-                <h1>Organizing a potluck?</h1>
+                <h1>ORGANIZING A POTLUCK?</h1>
                 <img src={potluck1} alt="" width="100%"></img>
               </div>
             </material.Grow>
