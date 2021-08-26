@@ -5,15 +5,16 @@ import styled from 'styled-components';
 
 const PotluckLocation = props => {
 
-    const {place, date, time} = props;
+    const {potluck_name, date, time, location} = props;
 
 
     return (
         
         <div>
-            <header>{place}</header>
+            <header>{potluck_name}</header>
             <h2>{date}</h2>
             <h3>{time}</h3>
+            <h3>{location}</h3>
         </div>
 
     )
