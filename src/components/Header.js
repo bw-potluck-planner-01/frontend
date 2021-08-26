@@ -15,7 +15,7 @@ function Header(props) {
       width: "100%",
       margin: "0% auto",
       padding: "0% auto",
-      background: "white",
+      background: "#fffcf7",
       fontFamily: [
         "-apple-system",
         "BlinkMacSystemFont",
