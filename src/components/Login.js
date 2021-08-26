@@ -7,7 +7,7 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import LoginAction from "../action/LoginAction";
 import { Alert } from "@material-ui/lab";
 import { useHistory } from "react-router-dom";
-import potluck1 from "../assets/potluck1";
+import potluck1 from "../assets/potluck1.png";
 
 function mapStateToProps(state) {
   return {
@@ -20,26 +20,24 @@ function mapStateToProps(state) {
 const Login = (props) => {
   const { push } = useHistory();
   const useStyles = makeStyles((theme) => ({
-    root: {
-      display: "flex",
-      flexWrap: "wrap",
-      width: "100%",
+    form: {
+      width: "80%",
       margin: "0% auto",
-      padding: "0% auto",
-      flexDirection: "column",
+      padding: "0%",
+      color: "",
     },
     input: {
       display: "flex",
       width: "50%",
       margin: "0% auto",
-      padding: "0% auto",
+      padding: "2%",
     },
     button: {
       display: "flex",
       width: "50%",
       margin: "0% auto",
-      padding: "0% auto",
-      marginTop: "2%",
+      padding: "2%",
+      marginTop: "10%",
     },
     alert: {
       width: "36%",
@@ -48,18 +46,34 @@ const Login = (props) => {
       marginTop: "1%",
     },
     info: {
-      width: "50%",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      width: "100%",
       margin: "0% auto",
-      padding: "2%",
+      padding: "0%",
       marginTop: "1%",
+      color: "gray",
+    },
+    textInfo: {
+      width: "80%",
+      margin: "0% auto",
+      padding: "5%",
     },
     leftSide: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      background: "white",
       width: "50%",
       margin: "0% auto",
       padding: "0% auto",
     },
     rightSide: {
-      background: "#EAB464",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      background: "linear-gradient(120deg, #EAB464 30%, white)",
       width: "50%",
       margin: "0% auto",
       padding: "0% auto",
@@ -68,8 +82,22 @@ const Login = (props) => {
       display: "flex",
       flexDirection: "row",
       width: "100%",
+      color: "gray",
       margin: "0% auto",
       padding: "0% auto",
+      height: "90vh",
+      fontFamily: [
+        "-apple-system",
+        "BlinkMacSystemFont",
+        '"Segoe UI"',
+        "Roboto",
+        '"Helvetica Neue"',
+        "Arial",
+        "sans-serif",
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+      ].join(","),
     },
     box: {
       width: "100%",
@@ -107,15 +135,19 @@ const Login = (props) => {
         <>
           <div className={classes.container}>
             <div className={classes.leftSide}>
-              <>
-                <material.Paper className={classes.info}>
+              <div className={classes.form}>
+                <material.Grow in={true}>
                   <h1>Login to Your Account</h1>
-                  Plan the Perfect Potluck! Coordinate potluck dishes, supplies
-                  and party RSVPs with online sign up sheets for gatherings with
-                  family, friends and large groups.
+                </material.Grow>
+                <div className={classes.info}>
+                  <div className={classes.textInfo}>
+                    Plan the Perfect Potluck! Coordinate potluck dishes,
+                    supplies and party RSVPs with online sign up sheets for
+                    gatherings with family, friends and large groups.
+                  </div>
                   <div id="FormHolder">
                     <div className="login-form">
-                      <div className={classes.root}>
+                      <div>
                         <material.FormControl className={classes.input}>
                           <material.InputLabel>Username</material.InputLabel>
                           <material.Input
@@ -161,24 +193,30 @@ const Login = (props) => {
                               onClick={handleSignUp}
                               className={classes.button}
                               variant="outlined"
-                              color="primary"
+                              color="secondary"
                             >
                               Sign Up
                             </material.Button>
-                          </material.ButtonGroup>
-                          {!!props.error ? (
-                            <Alert className={classes.alert} severity="error">
-                              {props.error}
-                            </Alert>
-                          ) : null}
+                          </material.ButtonGroup>{" "}
                         </material.FormControl>
                       </div>
+
+                      {!!props.error ? (
+                        <Alert className={classes.alert} severity="error">
+                          {props.error}
+                        </Alert>
+                      ) : null}
                     </div>
                   </div>
-                </material.Paper>
-              </>
+                </div>
+              </div>
             </div>
-            <div className={classes.rightSide}></div>
+            <material.Grow in={true}>
+              <div className={classes.rightSide}>
+                <h1>Organizing a potluck?</h1>
+                <img src={potluck1} alt="" width="100%"></img>
+              </div>
+            </material.Grow>
           </div>
         </>
       ) : (
