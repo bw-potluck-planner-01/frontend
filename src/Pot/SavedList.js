@@ -107,15 +107,15 @@ function SavedLuck(props) {
     const Btn = (obj) => {
         if(obj.organizer_id == user_id){
             return(
-                <>
+             <>
               <button className='delete'>Delete</button>
               <Link to={`/potlucks/${obj.potluck_id}`}><button>Add</button></Link>
-              </>
+             </>
             )
         }else{return (<Link to={`/potlucks/${obj.potluck_id}`}><button>Join</button></Link>)}
     }
     const Delete = () => {
-
+      axiosWithAuth().delete(`https://potluckplannerplus.herokuapp.com/potlucks/${potluck_id}`)
     }    
     return (
      <StyledSave>
