@@ -7,6 +7,7 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import LoginAction from "../action/LoginAction";
 import { Alert } from "@material-ui/lab";
 import { useHistory } from "react-router-dom";
+import potluck1 from "../assets/potluck1";
 
 function mapStateToProps(state) {
   return {
@@ -52,6 +53,30 @@ const Login = (props) => {
       padding: "2%",
       marginTop: "1%",
     },
+    leftSide: {
+      width: "50%",
+      margin: "0% auto",
+      padding: "0% auto",
+    },
+    rightSide: {
+      background: "#EAB464",
+      width: "50%",
+      margin: "0% auto",
+      padding: "0% auto",
+    },
+    container: {
+      display: "flex",
+      flexDirection: "row",
+      width: "100%",
+      margin: "0% auto",
+      padding: "0% auto",
+    },
+    box: {
+      width: "100%",
+      height: "90vh",
+      margin: "0% auto",
+      padding: "0% auto",
+    },
   }));
   const [values, setValues] = useState({
     username: "",
@@ -80,77 +105,81 @@ const Login = (props) => {
     <div>
       {!props.token ? (
         <>
-          {" "}
-          <>
-            <h1>Login to Your Account</h1>
-            <material.Paper className={classes.info}>
-              Plan the Perfect Potluck! Coordinate potluck dishes, supplies and
-              party RSVPs with online sign up sheets for gatherings with family,
-              friends and large groups.
-            </material.Paper>
-          </>
-          <material.Paper id="FormHolder">
-            <div className="login-form">
-              <div className={classes.root}>
-                <material.FormControl className={classes.input}>
-                  <material.InputLabel>Username</material.InputLabel>
-                  <material.Input
-                    id="username"
-                    type={"text"}
-                    value={values.username}
-                    onChange={handleChange("username")}
-                  />
-                </material.FormControl>
-                <material.FormControl className={classes.input}>
-                  <material.InputLabel>Password</material.InputLabel>
-                  <material.Input
-                    id="password"
-                    type={values.showPassword ? "text" : "password"}
-                    value={values.password}
-                    onChange={handleChange("password")}
-                    endAdornment={
-                      <material.IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                      >
-                        {values.showPassword ? (
-                          <Visibility />
-                        ) : (
-                          <VisibilityOff />
-                        )}
-                      </material.IconButton>
-                    }
-                  />
-                  <material.ButtonGroup>
-                    <material.Button
-                      id="login"
-                      onClick={handleSubmit}
-                      className={classes.button}
-                      variant="outlined"
-                      color="primary"
-                    >
-                      Login
-                    </material.Button>
-                    <material.Button
-                      id="signup"
-                      onClick={handleSignUp}
-                      className={classes.button}
-                      variant="outlined"
-                      color="primary"
-                    >
-                      Sign Up
-                    </material.Button>
-                  </material.ButtonGroup>
-                  {!!props.error ? (
-                    <Alert className={classes.alert} severity="error">
-                      {props.error}
-                    </Alert>
-                  ) : null}
-                </material.FormControl>
-              </div>
+          <div className={classes.container}>
+            <div className={classes.leftSide}>
+              <>
+                <material.Paper className={classes.info}>
+                  <h1>Login to Your Account</h1>
+                  Plan the Perfect Potluck! Coordinate potluck dishes, supplies
+                  and party RSVPs with online sign up sheets for gatherings with
+                  family, friends and large groups.
+                  <div id="FormHolder">
+                    <div className="login-form">
+                      <div className={classes.root}>
+                        <material.FormControl className={classes.input}>
+                          <material.InputLabel>Username</material.InputLabel>
+                          <material.Input
+                            id="username"
+                            type={"text"}
+                            value={values.username}
+                            onChange={handleChange("username")}
+                          />
+                        </material.FormControl>
+                        <material.FormControl className={classes.input}>
+                          <material.InputLabel>Password</material.InputLabel>
+                          <material.Input
+                            id="password"
+                            type={values.showPassword ? "text" : "password"}
+                            value={values.password}
+                            onChange={handleChange("password")}
+                            endAdornment={
+                              <material.IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowPassword}
+                                onMouseDown={handleMouseDownPassword}
+                              >
+                                {values.showPassword ? (
+                                  <Visibility />
+                                ) : (
+                                  <VisibilityOff />
+                                )}
+                              </material.IconButton>
+                            }
+                          />
+                          <material.ButtonGroup>
+                            <material.Button
+                              id="login"
+                              onClick={handleSubmit}
+                              className={classes.button}
+                              variant="outlined"
+                              color="primary"
+                            >
+                              Login
+                            </material.Button>
+                            <material.Button
+                              id="signup"
+                              onClick={handleSignUp}
+                              className={classes.button}
+                              variant="outlined"
+                              color="primary"
+                            >
+                              Sign Up
+                            </material.Button>
+                          </material.ButtonGroup>
+                          {!!props.error ? (
+                            <Alert className={classes.alert} severity="error">
+                              {props.error}
+                            </Alert>
+                          ) : null}
+                        </material.FormControl>
+                      </div>
+                    </div>
+                  </div>
+                </material.Paper>
+              </>
             </div>
-          </material.Paper>
+            <div className={classes.rightSide}></div>
+          </div>
         </>
       ) : (
         push("/")
