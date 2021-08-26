@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { grabToken } from "./action/LoginAction";
 
 import PotluckPage from "./components/PotluckPage/PotluckPage";
-import SavedList from './Pot/SavedList'
+import SavedList from "./Pot/SavedList";
 import Home from "./components/Home";
 import Header from "./components/Header";
 import Signup from "./components/Signup";
@@ -22,7 +22,10 @@ USER_CURRENT_TOKEN
 
 function App(props) {
   useEffect(() => {
-    props.grabToken({token: USER_CURRENT_TOKEN, userId: localStorage.getItem('user_id')})
+    props.grabToken({
+      token: USER_CURRENT_TOKEN,
+      userId: localStorage.getItem("user_id"),
+    });
   }, []);
   return (
     <AppFull>
@@ -41,9 +44,9 @@ function App(props) {
         <Route path="/login">
           <Login />
         </Route>
-        <ProtectedRoute exact path="/addpotluck" component={Pot}/>
+        <ProtectedRoute exact path="/addpotluck" component={Pot} />
         <ProtectedRoute path="/potlucks/:id" component={PotluckPage} />
-        <ProtectedRoute path='/potlucks' component={SavedList}/>
+        <ProtectedRoute path="/potlucks" component={SavedList} />
       </Switch>
     </AppFull>
   );
@@ -53,10 +56,10 @@ const mapStateToProps = (state) => {
     token: state.token,
   };
 };
-export default connect(mapStateToProps, {grabToken})(App);
+export default connect(mapStateToProps, { grabToken })(App);
 
 const AppFull = styled.div`
   text-align: center;
-  background: #dcccbb;
+  background: #fffcf7;
   min-height: 100vh;
 `;
