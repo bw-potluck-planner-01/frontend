@@ -4,8 +4,24 @@ import axiosWithAuth from '../../utils/axiosWithAuth';
 import { useParams } from 'react-router-dom';
 import PotluckLocation from './PotluckLocation';
 import PotluckItems from './PotluckItems';
-import './PotluckItems'
+import './PotluckItems';
+import styled from 'styled-components';
 
+const StyledPage = styled.div`
+.PotluckPage {
+    display:flex;
+    flex-flow:wrap column;
+    color:black;
+    background-color:#EAB464;
+    font-size:100%;
+    box-shadow: 6px 6px 7px 0px #A7754D;
+    border:2px dashed #8D98A7;
+    width:30%;
+    margin-left:35%;
+    margin-top:1%;
+    border-radius:10px;
+}
+`
 
 export default function PotluckPage() {
     const params = useParams();
@@ -41,6 +57,7 @@ export default function PotluckPage() {
     }, [])
 
     return (
+        <StyledPage>
         <div className="PotluckPage">
             <PotluckLocation
                 potluck_name={potluckInfo.potluck_name}
@@ -50,6 +67,7 @@ export default function PotluckPage() {
             />                                         
             <PotluckItems items={potluckItems} setItems={setPotluckItems} />
         </div>
+        </StyledPage>
     )
 
 
