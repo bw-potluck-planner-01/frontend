@@ -15,6 +15,7 @@ function mapStateToProps(state) {
     password: state.password,
     error: state.error,
     token: state.token,
+    isLoading: state.isLoading,
   };
 }
 const Login = (props) => {
@@ -112,6 +113,11 @@ const Login = (props) => {
       margin: "0% auto",
       padding: "0% auto",
     },
+    loading: {
+      width: "100%",
+      margin: "0% auto",
+      padding: "5%",
+    },
   }));
   const [values, setValues] = useState({
     username: "",
@@ -138,7 +144,15 @@ const Login = (props) => {
   const classes = useStyles();
   return (
     <div>
-      {!props.token ? (
+      {props.isLoading ? (
+        <>
+          <material.LinearProgress />
+          <material.CircularProgress
+            disableShrink
+            className={classes.loading}
+          />
+        </>
+      ) : !props.token ? (
         <>
           <div className={classes.container}>
             <div className={classes.leftSide}>

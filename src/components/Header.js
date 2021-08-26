@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import * as material from "@material-ui/core";
 import * as ui from "@material-ui/icons";
 import { logoutAction } from "../action/LoginAction";
-import potluck3 from "../assets/potluck3.js";
+import potluck3 from "../assets/potluck3.png";
 function Header(props) {
   const { token } = props;
   const { push } = useHistory();
@@ -57,6 +57,7 @@ function Header(props) {
     <>
       {token ? (
         <div className={classes.nav}>
+          <img src={potluck3} width={"10%"} />
           <div className={classes.container1}>
             <material.Button
               className={classes.button}
@@ -115,6 +116,7 @@ function Header(props) {
         </div>
       ) : (
         <div className={classes.nav}>
+          <img src={potluck3} width={"10%"} />
           <div className={classes.container1}>
             <material.Button
               className={classes.button}
