@@ -14,7 +14,7 @@ const signupSchema = yup.object().shape({
         .string()
         .trim()
         .required('You must reenter your password')
-        .oneOf([yup.ref('password'), null], 'Passwords must match'),
+        .oneOf([yup.ref('password')], 'Passwords must match'),
     robot: yup 
         .string()
         .required("You must prove you're not a robot")
