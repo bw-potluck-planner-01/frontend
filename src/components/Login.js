@@ -81,7 +81,7 @@ const Login = (props) => {
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
-      background: "linear-gradient(120deg, #EAB464 30%, white)",
+      background: "linear-gradient(0deg, #EAB464 0%, #fffcf7)",
       width: "50%",
       margin: "0% auto",
       padding: "0% auto",
