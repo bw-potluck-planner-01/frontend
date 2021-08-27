@@ -1,8 +1,32 @@
 # POTLUCK PLANNER DETAILS
 
-Deployed at 'https://potluck-planner-plus.netlify.app/'
+Deployed at `https://potluck-planner-plus.netlify.app/`
 
+## Endpoints
 
+Base url: `https://potluckplannerplus.herokuapp.com`
+
+A complete list can be found in the readme at `https://github.com/bw-potluck-planner-01/potluckplannerplus`
+
+### Authentication
+
+Signup: [POST] `/auth/register` returns the created user
+
+Login: [POST] `/auth/login` returns the user id and token
+
+Logout *Restricted* : [GET] `/auth/logout` 
+
+### Potlucks
+
+New potluck *Restricted* : [POST] `/org/:id` requires valid organizer id in params, unique potluck name, and valid date/time/location as such - { "potluck_name": "Thanksgiving", "date": "Nov 25, 2021", "time": "18:00", "location": "My House" } returns newly created potluck as such - { "organizer_id": 1, "potluck_name": "Thanksgiving", "date": "2021-11-25T08:00:00.000Z", "time": "18:00:00", "location": "My House" }
+
+View potlucks: [GET] `/potlucks` returns an array of all potlucks currently in database
+
+View individual potluck: [GET] `/potlucks/:id` requires a valid potluck_id in params returns a potluck by given id
+
+## Axios with Auth
+
+At present, the login page stores the user id and newly created token to both global state and local storage, and logout deletes them both. The axiosWithAuth function in the utils folder can be used to send any restricted axios calls.
 
 # Getting Started with Create React App
 
